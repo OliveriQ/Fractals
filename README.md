@@ -1,2 +1,2 @@
 # Fractals
-A collection of programs that render mathematical fractals
+A collection of programs that render mathematical fractals.
