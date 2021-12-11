@@ -5,4 +5,4 @@ main.o: main.cpp mandelbrot.h
 	g++ -c main.cpp
 
 clean:
-	del /Q /S *.o 
+	del /Q /S *.o *.exe

@@ -1,5 +1,5 @@
 #include "mandelbrot.h"
 
 int main() {
-  Mandelbrot m = Mandelbrot();
+  Mandelbrot m;
 }
