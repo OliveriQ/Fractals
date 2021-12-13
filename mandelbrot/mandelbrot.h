@@ -3,10 +3,6 @@
 #include <complex>
 #include <cmath>
 
-#define MAX_ITER 256
-#define HEIGHT 540
-#define WIDTH 960
-
 typedef std::complex<double> Complex;
 
 class Mandelbrot
@@ -15,13 +11,17 @@ class Mandelbrot
     Mandelbrot();
 
   private:
+    const double MAX_ITER = 255;
+    const double HEIGHT = 540;
+    const double WIDTH = 960;
+
     std::ofstream fout{"output.ppm"};
-    int spectrum[MAX_ITER];
+    int spectrum[255];
 
   private:
 
     double square(double x);
-    double vectorDist(Complex z);
+    double magnitude(Complex z);
 
     Complex nextComplex(Complex z);
     Complex mapPixel(double x, double y);
@@ -35,7 +35,7 @@ double Mandelbrot::square(double x) {
   return x * x; 
 }
 
-double Mandelbrot::vectorDist(Complex z) {
+double Mandelbrot::magnitude(Complex z) {
   return sqrt(square(z.real()) + square(z.imag()));
 }
 
@@ -78,7 +78,7 @@ Mandelbrot::Mandelbrot() {
       Complex z = (0, 0);
 
       int iterations = 0;
-      while(vectorDist(z) <= 2 && iterations < MAX_ITER) {
+      while(magnitude(z) <= 2 && iterations < MAX_ITER) {
         z = nextComplex(z) + c;
         iterations++;
       }
