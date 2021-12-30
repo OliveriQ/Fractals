@@ -2,7 +2,7 @@
 A collection of programs that render mathematical fractals.
 
 ### Mandelbrot set 
-![](mandelbrot_set/output.ppm)
+![](mandelbrot_set/output.png)
 
 ### Newton fractal
-![](newton_fractal/output.ppm)
+![](newton_fractal/output.png)
