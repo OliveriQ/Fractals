@@ -5,10 +5,10 @@
 
 typedef std::complex<double> Complex;
 
-class Mandelbrot
+class Tricorn
 {
   public:
-    Mandelbrot();
+    Tricorn();
 
   private:
     const double MAX_ITER = 255;
@@ -23,47 +23,47 @@ class Mandelbrot
     double square(double x);
     double magnitude(Complex z);
 
-    Complex nextComplex(Complex z);
-    Complex mapPixel(double x, double y);
+    Complex next_complex(Complex z);
+    Complex map_pixel(double x, double y);
 
     void plot_out(int color);
     void plot_in();
 
 };
 
-double Mandelbrot::square(double x) { 
+double Tricorn::square(double x) { 
   return x * x; 
 }
 
-double Mandelbrot::magnitude(Complex z) {
+double Tricorn::magnitude(Complex z) {
   return sqrt(square(z.real()) + square(z.imag()));
 }
 
-Complex Mandelbrot::nextComplex(Complex z) {
+Complex Tricorn::next_complex(Complex z) {
   double real = square(z.real()) - square(z.imag());
   double imag = 2 * z.real() * z.imag();
   
   return Complex(real, imag);
 }
 
-Complex Mandelbrot::mapPixel(double x, double y) {
+Complex Tricorn::map_pixel(double x, double y) {
   double c_real = (x - WIDTH / 2) * 4 / WIDTH;
   double c_imag = (y - HEIGHT / 2) * 4 / WIDTH;
   
   return Complex(c_real, c_imag);
 }
 
-void Mandelbrot::plot_out(int color) {
+void Tricorn::plot_out(int color) {
   fout << color << " ";
   fout << color << " ";
   fout << 100 << "\n";
 }
 
-void Mandelbrot::plot_in() {
+void Tricorn::plot_in() {
   fout << 0 << " " << 0 << " " << 0 << "\n";
 }
 
-Mandelbrot::Mandelbrot() {
+Tricorn::Tricorn() {
 
   fout << "P3\n";
   fout << WIDTH << " " << HEIGHT << "\n";
@@ -74,12 +74,15 @@ Mandelbrot::Mandelbrot() {
 
   for (int y = 0; y < HEIGHT; ++y) {
     for (int x = 0; x < WIDTH; ++x) {
-      Complex c = mapPixel(x, y);
+      Complex c = map_pixel(x, y);
       Complex z = (0, 0);
 
       int iterations = 0;
       while(magnitude(z) <= 2 && iterations < MAX_ITER) {
-        z = nextComplex(z) + c;
+        Complex next = next_complex(z);
+        double conj = next.imag() * -1;
+        next = Complex(next.real(), conj);
+        z = next + c;
         iterations++;
       }
 
