@@ -24,7 +24,7 @@ class Newton
   
     Complex f(Complex z);
     Complex df(Complex z);
-    Complex mapPixel(double x, double y);
+    Complex map_pixel(double x, double y);
 
     void plot(int R, int G, int B);
 
@@ -48,7 +48,7 @@ Complex Newton::df(Complex z) {
   return Complex(real, imag);
 }
 
-Complex Newton::mapPixel(double x, double y) {
+Complex Newton::map_pixel(double x, double y) {
   double c_real = (4.0 / WIDTH) * x - 2;
   double c_imag = (4.0 / HEIGHT) * y - 2;
   
@@ -74,7 +74,7 @@ Newton::Newton() {
   for (int y = 0; y < HEIGHT; ++y) {
     for (int x = 0; x < WIDTH; ++x) {
       //map pixel to range [-2, 2]
-      Complex z = mapPixel(x, y);
+      Complex z = map_pixel(x, y);
 
       //apply newtons method
       for (int i = 0; i < MAX_ITER; ++i) {
