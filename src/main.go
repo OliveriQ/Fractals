@@ -1,6 +1,6 @@
 package main
 
-import "fractals/fractals/mandelbrot"
+import "fractals/src/mandelbrot"
 
 func main() {
 	mandelbrot.Plot()

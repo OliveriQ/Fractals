@@ -44,7 +44,7 @@ func write(f *os.File, text string) {
 }
 
 func Plot() {
-	f, err := os.Create("../mandelbrot.ppm")
+	f, err := os.Create("mandelbrot/mandelbrot.ppm")
 
 	if err != nil {
 		log.Fatal(err)
